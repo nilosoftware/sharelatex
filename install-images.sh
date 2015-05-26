@@ -18,18 +18,17 @@ sudo docker run -d -P -p 80:80 -v ~/sharelatex_data:/var/lib/sharelatex \
   --link sharemongo:mongo \
   --link shareredis:redis \
   --name worksheet-builder \
-  nilo/access-worksheet-builder:0.0.1
+  nilo/access-worksheet-builder
 
 
 
-docker run -d -P -p 80:80 -v ~/sharelatex_data:/var/lib/sharelatex \
-  --env SHARELATEX_SITE_URL=http://192.168.99.100 \
+docker run -d -P -p 80:80 -v ~/sharelatex_docker_data:/var/lib/sharelatex \
   --env SHARELATEX_MONGO_URL=mongodb://mongo/sharelatex \
   --env SHARELATEX_REDIS_HOST=redis \
   --link sharemongo:mongo \
   --link shareredis:redis \
   --name worksheet-builder \
-  nilo/access-worksheet-builder:0.0.1
+  nilo/access-worksheet-builder
 
 
 # creates an admin user in the tool

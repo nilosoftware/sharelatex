@@ -26,7 +26,6 @@ RUN cd /var/www/sharelatex; \
 	
 # Minify js assets
 RUN cd /var/www/sharelatex/web; \
-	grunt compile:web; \
 	grunt compile:minify;
 
 
