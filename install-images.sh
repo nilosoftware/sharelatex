@@ -31,5 +31,20 @@ docker run -d -P -p 80:80 -v ~/sharelatex_docker_data:/var/lib/sharelatex \
   nilo/access-worksheet-builder
 
 
+docker run -d -P -p 80:80 -v ~/sharelatex_data:/var/lib/sharelatex \
+  --env SHARELATEX_SITE_URL=http://107.170.234.122 \
+  --env SHARELATEX_MONGO_URL=mongodb://mongo/sharelatex \
+  --env SHARELATEX_REDIS_HOST=redis \
+  --link sharemongo:mongo \
+  --link shareredis:redis \
+  --name sharelatex \
+  sharelatex/sharelatex
+
+ docker run -d -P -p 80:80 -v /opt/sharelatex --env SHARELATEX_MONGO_URL=mongodb://mongo/sharelatex --env SHARELATEX_REDIS_HOST=redis --link sharemongo:mongo --link shareredis:redis --name sharelatex sharelatex/sharelatex
+
 # creates an admin user in the tool
 sudo docker exec worksheet-builder /bin/bash -c "cd /var/www/sharelatex/web; grunt create-admin-user --email benard@nilosoftware.com"
+
+
+# Installs all of the necessary sharelatex packages
+docker exec worksheet-builder tlmgr install scheme-full
